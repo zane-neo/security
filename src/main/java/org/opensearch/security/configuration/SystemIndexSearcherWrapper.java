@@ -178,6 +178,7 @@ public class SystemIndexSearcherWrapper implements CheckedFunction<DirectoryRead
 
     protected final boolean isAdminDnOrPluginRequest() {
         final User user = threadContext.getTransient(ConfigConstants.OPENDISTRO_SECURITY_USER);
+        log.info("User name: {}, user roles: {}, security roles: {}, requested tenant: {} from threadContext is: ", user.getName(), user.getRoles(), user.getSecurityRoles(), user.getRequestedTenant());
         if (HeaderHelper.isInternalOrPluginRequest(threadContext)) {
             return true;
         } else if (adminDns.isAdmin(user)) {
